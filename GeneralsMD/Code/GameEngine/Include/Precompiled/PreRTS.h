@@ -49,12 +49,11 @@ class STLSpecialAlloc;
 #include <direct.h>
 #include <EXCPT.H>
 #include <float.h>
-#include <fstream.h>
+#include <fstream>
 #include <imagehlp.h>
 #include <io.h>
 #include <limits.h>
 #include <lmcons.h>
-#include <mapicode.h>
 #include <math.h>
 #include <memory.h>
 #include <mmsystem.h>
@@ -90,7 +89,7 @@ class STLSpecialAlloc;
 // srj sez: no, include STLTypesdefs below, instead, thanks
 //#include <algorithm>
 //#include <bitset>
-//#include <hash_map>
+//#include <unordered_map>
 //#include <list>
 //#include <map>
 //#include <queue>

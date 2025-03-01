@@ -622,7 +622,7 @@ WWINLINE bool operator!=(const FastSTLAllocator<T>&, const FastSTLAllocator<T>&)
 #include <string>
 #include <memory>
 #include <hash_set> //Uncomment this if you have hash containers available.
-#include <hash_map>
+#include <unordered_map>
 using namespace std;
 
 

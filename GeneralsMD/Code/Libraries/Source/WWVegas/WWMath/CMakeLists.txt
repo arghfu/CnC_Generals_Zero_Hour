@@ -1,0 +1,39 @@
+add_library(WWMath STATIC
+        aabox.cpp
+        aabtreecull.cpp
+        cardinalspline.cpp
+        catmullromspline.cpp
+        colmath.cpp
+        colmathaabox.cpp
+        colmathaabtri.cpp
+        colmathfrustum.cpp
+        colmathline.cpp
+        colmathobbobb.cpp
+        colmathplane.cpp
+        colmathobbox.cpp
+        colmathobbtri.cpp
+        colmathsphere.cpp
+        cullsys.cpp
+        curve.cpp
+        euler.cpp
+        frustum.cpp
+        gridcull.cpp
+        hermitespline.cpp
+        lineseg.cpp
+        lookuptable.cpp
+        matrix3.cpp
+        matrix3d.cpp
+        matrix4.cpp
+        obbox.cpp
+        v3_rnd.cpp
+        tri.cpp
+        tcbspline.cpp
+        quat.cpp
+        pot.cpp
+        ode.cpp
+        vehiclecurve.cpp
+        vp.cpp
+        wwmath.cpp
+)
+
+target_include_directories(WWMath PUBLIC ${CMAKE_CURRENT_LIST_DIR})

@@ -45,6 +45,8 @@
 #define __COMMON_GAMEAUDIO_H_
 
 // Includes                                                      
+#include <unordered_map>
+
 #include "Lib/BaseType.h"
 #include "Common/STLTypedefs.h"
 #include "Common/SubsystemInterface.h"
@@ -69,7 +71,7 @@ struct AudioRequest;
 struct AudioSettings;
 struct MiscAudio;
 
-typedef std::hash_map<AsciiString, AudioEventInfo*, rts::hash<AsciiString>, rts::equal_to<AsciiString> > AudioEventInfoHash;
+typedef std::unordered_map<AsciiString, AudioEventInfo*, rts::hash<AsciiString>, rts::equal_to<AsciiString> > AudioEventInfoHash;
 typedef AudioEventInfoHash::iterator AudioEventInfoHashIt;
 typedef UnsignedInt AudioHandle;
 

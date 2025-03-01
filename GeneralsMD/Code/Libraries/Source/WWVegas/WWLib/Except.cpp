@@ -439,8 +439,9 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 			DebugString("Exception Handler: Found exception description\n");
 			break;
 		}
+		Add_Txt(_code_txt[i]);
 	}
-	Add_Txt(_code_txt[i]);
+
 	Add_Txt("\r\n");
 
 	/*
@@ -611,8 +612,8 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 	Add_Txt(scrap);
 	sprintf(scrap, "    Data Selector: %08x\r\n", context->FloatSave.DataSelector);
 	Add_Txt(scrap);
-	sprintf(scrap, "      Cr0NpxState: %08x\r\n", context->FloatSave.Cr0NpxState);
-	Add_Txt(scrap);
+	// sprintf(scrap, "      Cr0NpxState: %08x\r\n", context->FloatSave.Cr0NpxState);
+	// Add_Txt(scrap);
 
 	for (int fp=0 ; fp<SIZE_OF_80387_REGISTERS / 10 ; fp++) {
 		sprintf(scrap, "ST%d : ", fp);

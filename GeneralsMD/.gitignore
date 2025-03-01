@@ -101,3 +101,4 @@ generatedVersion.h
 *.ncb
 *.opt
 *.plg
+**/cmake-build-debug/

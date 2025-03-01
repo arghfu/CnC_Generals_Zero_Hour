@@ -39,7 +39,7 @@
 
 #include	"win.h"
 #include	"xmouse.h"
-
+#include <mmiscapi2.h>
 class BSurface;
 
 /*

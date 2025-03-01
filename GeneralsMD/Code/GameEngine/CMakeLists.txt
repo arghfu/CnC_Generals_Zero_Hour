@@ -1,3 +1,7 @@
-add_library(GameEnginge STATIC)
+add_subdirectory(Source)
 
-target_sources(GameEnginge PRIVATE )
+add_library(GameEngine STATIC)
+
+target_link_libraries(GameEngine PRIVATE GameEngine.pch)
+
+
