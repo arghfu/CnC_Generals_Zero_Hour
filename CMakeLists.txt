@@ -58,6 +58,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(gamespy)
 
+include(cmake/lzhl.cmake)
+include(cmake/zlib.cmake)
+
 # Do we want to build extra SDK stuff or just the game binary?
 option(THYME_ZEROHOUR_PROJECT "Build Zero Hour code." ON)
 option(THYME_GENERALS_PROJECT "Build Generals code." OFF) # TODO
