@@ -25,6 +25,9 @@
  *
  */
 
+#ifdef _STLP_USE_PRAGMA_ONCE
+#pragma once	// JKMCD should speed up compile times.
+#endif
 
 //==========================================================
 // User-settable macros that control compilation:
@@ -42,7 +45,7 @@
  *
  */
 
-// # define   _STLP_NO_OWN_IOSTREAMS	1
+# define   _STLP_NO_OWN_IOSTREAMS	1
 
 
 /* 
@@ -56,13 +59,13 @@
  * Hint : In VC++ 6.x, they are not.
  */
 
-// #define   _STLP_NO_NEW_IOSTREAMS	1
+#define   _STLP_NO_NEW_IOSTREAMS	1
 
 /*
  * Use this switch for embedded systems where no iostreams are available
  * at all. STLport own iostreams will also get disabled automatically then.
  */
-# define _STLP_NO_IOSTREAMS 1
+// # define _STLP_NO_IOSTREAMS 1
 
 /* 
  * Set _STLP_DEBUG to turn the "Debug Mode" on.
@@ -201,6 +204,3 @@
 // Local Variables:
 // mode:C++
 // End:
-
-#define _STLP_DONT_SIMULATE_PARTIAL_SPEC_FOR_TYPE_TRAITS 1
-#define _STLP_NO_OWN_NAMESPACE  1
