@@ -136,6 +136,7 @@ typedef void(__stdcall *AIL_sample_callback)(HSAMPLE);
 #define AIL_3D_4_SPEAKER 3
 #define AIL_3D_51_SPEAKER 4
 #define AIL_3D_71_SPEAKER 5
+#define AIL_MSS_version(a, b)
 #define M3D_NOERR 0
 
 #ifndef YES

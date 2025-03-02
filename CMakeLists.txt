@@ -43,6 +43,9 @@ if((WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows") AND ${CMAKE_SIZEOF_VOID_P} EQU
     add_subdirectory(Dependencies/BinkStub)
     add_subdirectory(Dependencies/MilesStub)
     add_subdirectory(Dependencies/STLPort)
+    include_directories(Dependencies/DX90SDK/Include)
+    link_directories(Dependencies/DX90SDK/Lib)
+    link_directories(Dependencies/DbgHelp/Lib)
 endif()
 
 include(FetchContent)
