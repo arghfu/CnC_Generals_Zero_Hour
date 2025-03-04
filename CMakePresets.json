@@ -7,19 +7,6 @@
     },
     "configurePresets": [
         {
-            "name": "vc6",
-            "displayName": "Build Zero Hour Binaries with NMake",
-            "generator": "NMake Makefiles",
-            "hidden": false,
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",    
-                "CMAKE_BUILD_TYPE": "Release",
-                "THYME_FLAGS": "/W3"
-            }
-        },
-        {
             "name": "default",
             "displayName": "Default Config",
             "generator": "Ninja Multi-Config",
@@ -32,67 +19,37 @@
             }
         },
         {
-            "name": "win",
+            "name": "windows",
             "inherits": "default",
-            "hidden": false,
-            "displayName": "Windows builds",
+            "hidden": true,
             "cacheVariables": {
+                "CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION_MAXIMUM": "10.0.22621.0",
+                "CMAKE_SYSTEM_VERSION": "10.0.19041.0"
+            }
+        },
+        {
+            "name": "windows-msvc",
+            "inherits": "windows",
+            "hidden": true,
+            "displayName": "Windows-only configuration",
+            "description": "This build is only available on Windows",
+            "generator": "Ninja Multi-Config",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchain/Windows.MSVC.toolchain.cmake",
+                "CMAKE_VS_VERSION_PRERELEASE": "ON",
+                "VS_EXPERIMENTAL_MODULE": "OFF",
+                "VS_USE_SPECTRE_MITIGATION_ATLMFC_RUNTIME": "OFF",
+                "VS_USE_SPECTRE_MITIGATION_RUNTIME": "OFF"
+            }
+        },
+        {
+            "name": "windows-msvc-x86",
+            "inherits": "windows-msvc",
+            "displayName": "Configure for 'windows-msvc-x86'",
+            "cacheVariables": {
+                "CMAKE_SYSTEM_PROCESSOR": "X86",
                 "THYME_FLAGS": "/Zc:strictStrings;/W3"
             }
-        },
-        {
-            "name": "unix",
-            "inherits": "default",
-            "hidden": false,
-            "displayName": "None Windows builds",
-            "cacheVariables": {
-                "CMAKE_CXX_FLAGS_RELEASE": "-O2 -g -DNDEBUG",
-                "CMAKE_C_FLAGS_RELEASE": "-O2 -g -DNDEBUG"
-            }
-        }
-    ],
-    "buildPresets": [
-        {
-            "name": "win",
-            "configurePreset": "win",
-            "displayName": "Build Windows build",
-            "description": "Build Windows build",
-            "configuration": "Release"
-        },
-        {
-            "name": "unix",
-            "configurePreset": "unix",
-            "displayName": "Build none Windows build",
-            "description": "Build none Windows build",
-            "configuration": "Release"
-        }
-    ],
-    "workflowPresets": [
-        {
-            "name": "win",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "win"
-                },
-                {
-                    "type": "build",
-                    "name": "win"
-                }
-            ]
-        },
-        {
-            "name": "unix",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "unix"
-                },
-                {
-                    "type": "build",
-                    "name": "unix"
-                }
-            ]
         }
     ]
 }
