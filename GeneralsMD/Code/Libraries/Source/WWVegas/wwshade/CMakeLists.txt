@@ -77,3 +77,5 @@ target_link_libraries(wwshade PRIVATE
 )
 
 target_sources(wwshade PRIVATE ${WWSHADE_SRC})
+
+target_compile_definitions(wwshade PRIVATE __PLACEMENT_VEC_NEW_INLINE)
