@@ -13,7 +13,7 @@ target_compile_options(wwcommon INTERFACE
 )
 
 target_link_libraries(wwcommon INTERFACE
-    stlport
+#    stlport
     milesstub
 )
 
