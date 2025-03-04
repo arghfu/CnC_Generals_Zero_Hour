@@ -48,7 +48,7 @@
             "displayName": "Configure for 'windows-msvc-x86'",
             "cacheVariables": {
                 "CMAKE_SYSTEM_PROCESSOR": "X86",
-                "THYME_FLAGS": "/Zc:strictStrings;/W3"
+                "THYME_FLAGS": "/W3"
             }
         }
     ]
