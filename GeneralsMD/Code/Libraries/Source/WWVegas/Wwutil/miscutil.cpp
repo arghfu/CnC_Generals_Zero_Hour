@@ -26,7 +26,7 @@
 //-----------------------------------------------------------------------------
 #include "miscutil.h" // I WANNA BE FIRST!
 
-#include <time.h>
+#include <ctime>
 
 #include "rawfile.h"
 #include "wwdebug.h"
@@ -47,10 +47,10 @@ LPCSTR cMiscUtil::Get_Text_Time(void)
    // Note: BoundsChecker reports 2 memory leaks in ctime here.
 	//
 
-	long time_now = ::time(NULL);
+   const time_t time_now = ::time(NULL);
    char * time_str = ::ctime(&time_now);
    time_str[::strlen(time_str) - 1] = 0; // remove \n
-   return time_str; 
+   return time_str;
 }
 
 //---------------------------------------------------------------------------
