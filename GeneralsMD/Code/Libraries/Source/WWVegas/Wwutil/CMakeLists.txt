@@ -11,7 +11,3 @@ target_sources(wwutil PRIVATE
         miscutil.cpp
         miscutil.h
 )
-
-target_compile_definitions(wwutil PRIVATE
-        __PLACEMENT_VEC_NEW_INLINE
-)

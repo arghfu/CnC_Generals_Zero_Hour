@@ -2,31 +2,31 @@
 add_library(wwcommon INTERFACE)
 
 target_compile_definitions(wwcommon INTERFACE
-    #NOMINMAX
-    WIN32_LEAN_AND_MEAN
-    $<$<CONFIG:Debug>:WWDEBUG>
-    $<$<CONFIG:Debug>:_DEBUG>
+        __PLACEMENT_VEC_NEW_INLINE
+        WIN32_LEAN_AND_MEAN
+        $<$<CONFIG:Debug>:WWDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG>
 )
 
 target_compile_options(wwcommon INTERFACE
-    ${THYME_FLAGS}
+        ${THYME_FLAGS}
 )
 
 target_link_libraries(wwcommon INTERFACE
-#    stlport
-    milesstub
+        #    stlport
+        milesstub
 )
 
 target_include_directories(wwcommon INTERFACE
-    WWDebug
-    WWLib
-    WWMath
-    Wwutil
-    WWSaveLoad
-    WW3D2
-    wwshade
-    WWAudio
-    .
+        WWDebug
+        WWLib
+        WWMath
+        Wwutil
+        WWSaveLoad
+        WW3D2
+        wwshade
+        WWAudio
+        .
 )
 
 add_subdirectory(WWDebug)
@@ -42,24 +42,24 @@ add_subdirectory(wwshade)
 add_library(wwvegas INTERFACE)
 
 target_include_directories(wwvegas INTERFACE
-    WWDebug
-    WWLib
-    WWMath
-    WW3D2
-    WWDownload
-    WWSaveLoad
-    wwshade
-    Wwutil
-    .
+        WWDebug
+        WWLib
+        WWMath
+        WW3D2
+        WWDownload
+        WWSaveLoad
+        wwshade
+        Wwutil
+        .
 )
 
 target_link_libraries(wwvegas INTERFACE
-    wwdebug
-    wwlib
-    wwmath
-    wwutil
-    wwsaveload
-    ww3d2
-    wwdownload
-    wwshade
+        wwdebug
+        wwlib
+        wwmath
+        wwutil
+        wwsaveload
+        ww3d2
+        wwdownload
+        wwshade
 )
