@@ -13,7 +13,6 @@ target_include_directories(GameEngine PRIVATE
 )
 
 target_link_libraries(GameEngine PUBLIC
-    stlport
     wwvegas
     Compression
     BrowserDispatch
@@ -21,7 +20,9 @@ target_link_libraries(GameEngine PUBLIC
 )
 
 target_compile_definitions(GameEngine PRIVATE
-    IG_DEBUG_STACKTRACE
+        IG_DEBUG_STACKTRACE
+        __PLACEMENT_VEC_NEW_INLINE
+        _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
 )
 
 target_sources(GameEngine PRIVATE
