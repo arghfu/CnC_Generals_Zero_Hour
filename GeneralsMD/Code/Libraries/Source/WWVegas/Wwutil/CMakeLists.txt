@@ -7,7 +7,5 @@ target_link_libraries(wwutil PRIVATE
 
 target_sources(wwutil PRIVATE
         mathutil.cpp
-        mathutil.h
         miscutil.cpp
-        miscutil.h
 )

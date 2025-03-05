@@ -34,49 +34,6 @@ set(WWMATH_SRC
     vehiclecurve.cpp
     vp.cpp
     wwmath.cpp
-    aabox.h
-    aabtreecull.h
-    aaplane.h
-    cardinalspline.h
-    castres.h
-    catmullromspline.h
-    colmath.h
-    colmathaabox.h
-    colmathfrustum.h
-    colmathinlines.h
-    colmathline.h
-    colmathplane.h
-    cullsys.h
-    culltype.h
-    curve.h
-    euler.h
-    frustum.h
-    gridcull.h
-    hermitespline.h
-    lineseg.h
-    lookuptable.h
-    matrix3.h
-    matrix3d.h
-    matrix4.h
-    obbox.h
-    ode.h
-    plane.h
-    pot.h
-    quat.h
-    rect.h
-    sphere.h
-    tcbspline.h
-    tri.h
-    v3_rnd.h
-    vector2.h
-    vector2i.h
-    vector3.h
-    Vector3i.h
-    vector4.h
-    vehiclecurve.h
-    vp.h
-    wwmath.h
-    wwmathids.h
 )
 
 # Targets to build.

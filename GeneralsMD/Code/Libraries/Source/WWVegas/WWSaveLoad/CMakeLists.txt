@@ -12,28 +12,6 @@ set(WWSAVELOAD_SRC
     saveloadsubsystem.cpp
     twiddler.cpp
     wwsaveload.cpp
-    definition.h
-    definitionclassids.h
-    definitionfactory.h
-    definitionfactorymgr.h
-    definitionmgr.h
-    editable.h
-    parameter.h
-    parameterlist.h
-    parametertypes.h
-    persist.h
-    persistfactory.h
-    pointerremap.h
-    postloadable.h
-    saveload.h
-    saveloadids.h
-    saveloadstatus.h
-    saveloadstatus.h
-    saveloadsubsystem.h
-    simpledefinitionfactory.h
-    simpleparameter.h
-    twiddler.h
-    wwsaveload.h
 )
 
 # Targets to build.

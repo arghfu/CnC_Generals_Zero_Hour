@@ -10,48 +10,18 @@ set(WWSHADE_SRC
     shdmesh.cpp
     shdrenderer.cpp
     shdsubmesh.cpp
-    shdclassids.h
-    shddef.h
-    shddeffactory.h
-    shddefmanager.h
-    shdforcelinks.h
-    shdhw_constants.h
-    shdhwshader.h
-    shdinterface.h
-    shdloader.h
-    shdmesh.h
-    shdrenderer.h
-    shdsubmesh.h
     shdsimple.cpp
-    shdsimple.h
     shd6bumpspec.cpp
-    shd6bumpspec.h
-    shd6bumpspec_constants.h
     shd7bumpspec.cpp
-    shd7bumpspec.h
-    shd7bumpspec_constants.h
     shd8bumpspec.cpp
-    shd8bumpspec.h
-    shd8bumpspec_constants.h
     shdbumpspec.cpp
-    shdbumpspec.h
     shd6bumpdiff.cpp
-    shd6bumpdiff.h
-    shd6bumpdiff_constants.h
     shd7bumpdiff.cpp
-    shd7bumpdiff.h
-    shd7bumpdiff_constants.h
     shd8bumpdiff.cpp
-    shd8bumpdiff.h
-    shd8bumpdiff_constants.h
     shdbumpdiff.cpp
-    shdbumpdiff.h
     shdglossmask.cpp
-    shdglossmask.h
     shdcubemap.cpp
-    shdcubemap.h
     shdlegacyw3d.cpp
-    shdlegacyw3d.h
 )
 
 if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")

@@ -4,13 +4,6 @@ set(WWDOWNLOAD_SRC
     FTP.CPP
     registry.cpp
     urlBuilder.cpp
-    downloaddefs.h
-    ftp.h
-    ftpdefs.h
-    Ftp.h
-    FtpDefs.h
-    Registry.h
-    urlBuilder.h
 )
 
 # Targets to build.
