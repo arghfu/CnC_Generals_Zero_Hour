@@ -50,6 +50,8 @@
 // sinLookup and arcCosLookup were statically initialized on a mcampbell2k, a 1GHz PIII running Win2K
 // on Feb 12, 2002.  To regenerate, define REGENERATE_TRIG_TABLES, run the program, and copy the
 // resulting trig.txt file here.
+#pragma warning(push)
+#pragma warning(disable : 4838)
 
 static Int sinLookup[TRIG_RES] = {
 	0x00000000, 0x00000006, 0x0000000C, 0x00000012, 0x00000019, 0x0000001F, 0x00000025, 0x0000002B,
@@ -565,7 +567,10 @@ static Int sinLookup[TRIG_RES] = {
 	0xFFFFFF9C, 0xFFFFFFA2, 0xFFFFFFA9, 0xFFFFFFAF, 0xFFFFFFB5, 0xFFFFFFBB, 0xFFFFFFC2, 0xFFFFFFC8,
 	0xFFFFFFCE, 0xFFFFFFD5, 0xFFFFFFDB, 0xFFFFFFE1, 0xFFFFFFE7, 0xFFFFFFEE, 0xFFFFFFF4, 0xFFFFFFFA
 };
+#pragma warning(pop)
 
+#pragma warning(push)
+#pragma warning(disable : 4838)
 static Int arcCosLookup[2 * INT_ONE] = {
 	0x00003243, 0x000031E9, 0x000031C3, 0x000031A7, 0x0000318E, 0x00003179, 0x00003166, 0x00003154,
 	0x00003143, 0x00003134, 0x00003125, 0x00003117, 0x0000310A, 0x000030FD, 0x000030F1, 0x000030E5,
@@ -1592,7 +1597,7 @@ static Int arcCosLookup[2 * INT_ONE] = {
 	0x0000016A, 0x0000015E, 0x00000152, 0x00000146, 0x00000139, 0x0000012C, 0x0000011E, 0x0000010F,
 	0x00000100, 0x000000EF, 0x000000DD, 0x000000CA, 0x000000B5, 0x0000009C, 0x00000080, 0x0000005A
 };
-
+#pragma warning(pop)
 
 static Int intArcCos( Int c )
 {

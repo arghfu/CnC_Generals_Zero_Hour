@@ -167,27 +167,25 @@ ObjectID CountermeasuresBehavior::calculateCountermeasureToDivertTo( const Objec
 	//Start at the end of the list and go towards the beginning.
 	CountermeasuresVec::iterator it = m_counterMeasures.end();
 	//end is actually the end so advance the iterator.
-	if( it )
+	--it;
+	while( iteratorMax-- )
 	{
-		--it;
-		while( iteratorMax-- )
+		Object *obj = TheGameLogic->findObjectByID( *it );
+		if( obj )
 		{
-			Object *obj = TheGameLogic->findObjectByID( *it );
-			if( obj )
+			Real dist = ThePartitionManager->getDistanceSquared( obj, getObject(), FROM_CENTER_2D );
+			if( dist < closestDist )
 			{
-				Real dist = ThePartitionManager->getDistanceSquared( obj, getObject(), FROM_CENTER_2D );
-				if( dist < closestDist )
-				{
-					closestDist = dist;
-					closestFlare = obj;
-				}
-			}
-			else
-			{
-				--it;
+				closestDist = dist;
+				closestFlare = obj;
 			}
 		}
+		else
+		{
+			--it;
+		}
 	}
+
 
 	if( closestFlare )
 	{

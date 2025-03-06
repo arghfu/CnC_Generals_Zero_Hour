@@ -48,9 +48,6 @@
 #define __STLTYPEDEFS_H__
 
 //-----------------------------------------------------------------------------
-// srj sez: this must come first, first, first.
-#define _STLP_USE_NEWALLOC					1
-//#define _STLP_USE_CUSTOM_NEWALLOC		STLSpecialAlloc
 class STLSpecialAlloc;
 
 //-----------------------------------------------------------------------------
@@ -70,7 +67,7 @@ enum DrawableID;
 
 #include <algorithm>
 #include <bitset>
-#include <hash_map>
+#include <unordered_map>
 #include <list>
 #include <map>
 #include <queue>

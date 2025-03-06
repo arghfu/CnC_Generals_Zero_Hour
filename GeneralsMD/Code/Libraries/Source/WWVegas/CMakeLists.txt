@@ -50,6 +50,7 @@ target_include_directories(wwvegas INTERFACE
         WWSaveLoad
         wwshade
         Wwutil
+        . # public interface
 )
 
 target_link_libraries(wwvegas INTERFACE
