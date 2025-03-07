@@ -16,6 +16,11 @@ target_link_libraries(GameEngineDevice PUBLIC
     binkstub
 )
 
+target_compile_definitions(GameEngineDevice PRIVATE
+        __PLACEMENT_VEC_NEW_INLINE
+        _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
+)
+
 target_sources(GameEngineDevice PRIVATE
     Include/MilesAudioDevice/MilesAudioManager.h
     Include/VideoDevice/Bink/BinkVideoPlayer.h

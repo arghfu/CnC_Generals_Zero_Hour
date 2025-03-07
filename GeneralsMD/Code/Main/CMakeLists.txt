@@ -1,28 +1,29 @@
 add_executable(zerohour WIN32)
 
 target_link_directories(zerohour PRIVATE
-    ../GameEngine
+        ../GameEngine
 )
 
 target_link_libraries(zerohour PRIVATE
-    GameEngine
-    GameEngineDevice  
-    winmm
-    imm32
-    dbghelp
-    vfw32
-    d3d8
-    d3dx8
-    dinput8
-    dxguid
-    binkstub
-    milesstub
-    profile
+        GameEngine
+        GameEngineDevice
+        winmm
+        imm32
+        dbghelp
+        vfw32
+        d3d8
+        d3dx8
+        dinput8
+        dxguid
+        binkstub
+        milesstub
+        profile
+        Compression
 )
 
 # TODO Originally referred to build host and user, replace with git info perhaps?
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/GeneratedVersion.h
-"#pragma once
+        "#pragma once
 
 #define VERSION_LOCALBUILDNUM 0
 #define VERSION_BUILDUSER \"Someone\"
@@ -32,7 +33,7 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/GeneratedVersion.h
 
 # Based on original binary values for these variables.
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/BuildVersion.h
-"#pragma once
+        "#pragma once
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 4
@@ -40,23 +41,24 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/BuildVersion.h
 "
 )
 
-target_link_options(zerohour PRIVATE "/NODEFAULTLIB:libci.lib")
+target_compile_definitions(zerohour PRIVATE __PLACEMENT_VEC_NEW_INLINE)
+
+target_link_options(zerohour PRIVATE "/NODEFAULTLIB:libci.lib,libcd.lib")
 
 target_include_directories(zerohour PRIVATE
-    ../Libraries/Include
-    ../Libraries/Source
-    .
-    ${CMAKE_CURRENT_BINARY_DIR}
+        ../Libraries/Include
+        ../Libraries/Source
+        .
+        ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 target_sources(zerohour PRIVATE
-    WinMain.cpp
-    WinMain.h
-    ../Libraries/Source/EABrowserDispatch/BrowserDispatch_i.c
+        WinMain.cpp
+        WinMain.h
 )
 
-if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
+if ("${CMAKE_SYSTEM}" MATCHES "Windows")
     target_sources(zerohour PRIVATE
-        RTS.RC
+            RTS.RC
     )
-endif()
+endif ()
