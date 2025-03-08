@@ -3,9 +3,15 @@ add_library(wwcommon INTERFACE)
 
 target_compile_definitions(wwcommon INTERFACE
         __PLACEMENT_VEC_NEW_INLINE
-        WIN32_LEAN_AND_MEAN
         $<$<CONFIG:Debug>:WWDEBUG>
         $<$<CONFIG:Debug>:_DEBUG>
+        _DEBUG
+        WINVER=0x400
+        _WINDOWS
+        WIN32
+        WIN32_LEAN_AND_MEAN
+        REGEX_MALLOC
+        STDC_HEADERS
 )
 
 target_compile_options(wwcommon INTERFACE

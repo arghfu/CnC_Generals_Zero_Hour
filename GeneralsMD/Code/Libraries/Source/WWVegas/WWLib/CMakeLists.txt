@@ -90,5 +90,3 @@ target_link_libraries(wwlib PRIVATE
 )
 
 target_sources(wwlib PRIVATE ${WWLIB_SRC})
-
-target_compile_definitions(wwlib PRIVATE __PLACEMENT_VEC_NEW_INLINE)

@@ -44,5 +44,3 @@ target_link_libraries(wwmath PRIVATE
 )
 
 target_sources(wwmath PRIVATE ${WWMATH_SRC})
-
-target_compile_definitions(wwmath PRIVATE __PLACEMENT_VEC_NEW_INLINE)
