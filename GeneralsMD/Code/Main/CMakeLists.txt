@@ -18,12 +18,12 @@ target_link_libraries(zerohour PRIVATE
         binkstub
         milesstub
         profile
-        Compression
+        safedisc
 )
 
 # TODO Originally referred to build host and user, replace with git info perhaps?
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/GeneratedVersion.h
-        "#pragma once
+"#pragma once
 
 #define VERSION_LOCALBUILDNUM 0
 #define VERSION_BUILDUSER \"Someone\"

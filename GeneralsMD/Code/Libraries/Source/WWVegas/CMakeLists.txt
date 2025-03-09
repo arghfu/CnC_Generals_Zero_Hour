@@ -21,6 +21,7 @@ target_compile_options(wwcommon INTERFACE
 target_link_libraries(wwcommon INTERFACE
         #    stlport
         milesstub
+        d3d8lib
 )
 
 target_include_directories(wwcommon INTERFACE

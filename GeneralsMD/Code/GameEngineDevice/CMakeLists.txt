@@ -14,7 +14,9 @@ target_link_libraries(GameEngineDevice PUBLIC
     GameEngine
     milesstub
     binkstub
-)
+    benchmark
+    d3d8lib
+    )
 
 target_compile_definitions(GameEngineDevice PRIVATE
         __PLACEMENT_VEC_NEW_INLINE

@@ -38,28 +38,22 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
+include(FetchContent)
+
 # Find/Add build dependencies and stubs shared by all projects
 if((WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows") AND ${CMAKE_SIZEOF_VOID_P} EQUAL 4)
-    add_subdirectory(Dependencies/BinkStub)
-    add_subdirectory(Dependencies/MilesStub)
-    add_subdirectory(Dependencies/STLPort)
-    include_directories(Dependencies/DX90SDK/Include)
-    link_directories(Dependencies/DX90SDK/Lib/x86)
-    link_directories(Dependencies/DbgHelp/Lib)
+    include(cmake/miles.cmake)
+    include(cmake/bink.cmake)
+    include(cmake/stlport.cmake)
+    include(cmake/dx8.cmake)
+    include(cmake/dbghelp.cmake)
 endif()
 
-include(FetchContent)
-set(GS_OPENSSL FALSE)
-
-FetchContent_Declare(
-    gamespy
-    GIT_REPOSITORY https://github.com/TheAssemblyArmada/GamespySDK.git
-    GIT_TAG        6f83d85d6d2e2d9a430301aeef5134578d0ecfcd
-)
-FetchContent_MakeAvailable(gamespy)
-
+include(cmake/gamespy.cmake)
 include(cmake/lzhl.cmake)
 include(cmake/zlib.cmake)
+add_subdirectory(Dependencies/Benchmark)
+add_subdirectory(Dependencies/SafeDisc)
 
 # Do we want to build extra SDK stuff or just the game binary?
 option(THYME_ZEROHOUR_PROJECT "Build Zero Hour code." ON)
