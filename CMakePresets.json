@@ -23,8 +23,7 @@
             "inherits": "default",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION_MAXIMUM": "10.0.22621.0",
-                "CMAKE_SYSTEM_VERSION": "10.0.19041.0"
+                "CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION_MAXIMUM": "10.0.22621.0"
             }
         },
         {
@@ -36,15 +35,45 @@
             "generator": "Ninja Multi-Config",
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchain/Windows.MSVC.toolchain.cmake",
-                "CMAKE_VS_VERSION_PRERELEASE": "ON",
-                "VS_EXPERIMENTAL_MODULE": "OFF",
-                "VS_USE_SPECTRE_MITIGATION_ATLMFC_RUNTIME": "OFF",
-                "VS_USE_SPECTRE_MITIGATION_RUNTIME": "OFF"
+                "CMAKE_VS_VERSION_RANGE": "[16.0,18.0)"
+            }
+        },
+        {
+            "name": "windows-clang",
+            "inherits": "windows",
+            "hidden": true,
+            "displayName": "Windows-only configuration",
+            "description": "This build is only available on Windows",
+            "generator": "Ninja Multi-Config",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchain/Windows.Clang.toolchain.cmake",
+                "CMAKE_VS_VERSION_RANGE": "[16.0,18.0)"
+            }
+        },
+        {
+            "name": "windows-clangcl",
+            "inherits": "windows-clang",
+            "hidden": true,
+            "displayName": "Windows-only configuration",
+            "description": "This build is only available on Windows",
+            "generator": "Ninja Multi-Config",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER_FRONTEND_VARIANT": "MSVC",
+                "CMAKE_CXX_COMPILER_FRONTEND_VARIANT": "MSVC"
             }
         },
         {
             "name": "windows-msvc-x86",
             "inherits": "windows-msvc",
+            "displayName": "Configure for 'windows-msvc-x86'",
+            "cacheVariables": {
+                "CMAKE_SYSTEM_PROCESSOR": "X86",
+                "THYME_FLAGS": "/W3"
+            }
+        },
+        {
+            "name": "windows-clangcl-x86",
+            "inherits": "windows-clangcl",
             "displayName": "Configure for 'windows-msvc-x86'",
             "cacheVariables": {
                 "CMAKE_SYSTEM_PROCESSOR": "X86",
