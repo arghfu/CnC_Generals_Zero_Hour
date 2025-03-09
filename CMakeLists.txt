@@ -5,21 +5,6 @@ if(POLICY CMP0074)
     cmake_policy(SET CMP0074 NEW)
 endif()
 
-# Disable default MSVC setting CRT type so we can set it ourselves.
-if(POLICY CMP0091)
-    cmake_policy(SET CMP0091 NEW)
-endif()
-
-# Disable default MSVC warning level so we can set it ourselves.
-if(POLICY CMP0092)
-    cmake_policy(SET CMP0092 NEW)
-endif()
-
-# Allow specifying MSVC debug configurations.
-#if(POLICY CMP0141)
-#    cmake_policy(SET CMP0141 NEW)
-#endif()
-
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 include(FeatureSummary)
@@ -69,12 +54,15 @@ add_feature_info(GeneralsStuff THYME_GENERALS_PROJECT "Build Generals code")
 
 # Add main build targets
 if(THYME_ZEROHOUR_PROJECT)
+    set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/GeneralsMD)
     add_subdirectory(GeneralsMD)
 endif()
 
 if(THYME_GENERALS_PROJECT)
+    set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/Generals)
     add_subdirectory(Generals)
 endif()
 
 feature_summary(WHAT ENABLED_FEATURES DESCRIPTION "Enabled features:")
 feature_summary(WHAT DISABLED_FEATURES DESCRIPTION "Disabled features:")
+

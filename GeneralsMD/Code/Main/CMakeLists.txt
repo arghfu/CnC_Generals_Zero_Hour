@@ -4,6 +4,11 @@ target_link_directories(zerohour PRIVATE
         ../GameEngine
 )
 
+set_target_properties(zerohour PROPERTIES
+        OUTPUT_NAME Generals
+        DEBUG_POSTFIX d
+)
+
 target_link_libraries(zerohour PRIVATE
         GameEngine
         GameEngineDevice
@@ -33,7 +38,7 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/GeneratedVersion.h
 
 # Based on original binary values for these variables.
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/BuildVersion.h
-        "#pragma once
+"#pragma once
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 4
@@ -56,6 +61,10 @@ target_sources(zerohour PRIVATE
         WinMain.cpp
         WinMain.h
 )
+
+install(TARGETS zerohour binkstub milesstub
+        DESTINATION Run
+        CONFIGURATIONS Debug)
 
 if ("${CMAKE_SYSTEM}" MATCHES "Windows")
     target_sources(zerohour PRIVATE
