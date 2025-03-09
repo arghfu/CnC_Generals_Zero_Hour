@@ -21,7 +21,6 @@ target_link_libraries(GameEngine PUBLIC
 )
 
 target_compile_definitions(GameEngine PRIVATE
-        IG_DEBUG_STACKTRACE
         __PLACEMENT_VEC_NEW_INLINE
         _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
 )

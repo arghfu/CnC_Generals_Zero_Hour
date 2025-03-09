@@ -380,7 +380,7 @@ stack_frame.AddrFrame.Offset = myebp;
 		// Skip some?
 		while (stillgoing&&skip)
 		{
-			stillgoing = StackWalk(IMAGE_FILE_MACHINE_I386,
+			stillgoing = StackWalk(IMAGE_FILE_MACHINE_AMD64,
 								process,
 								thread,
 								&stack_frame,
@@ -394,7 +394,7 @@ stack_frame.AddrFrame.Offset = myebp;
 
 		while(stillgoing&&count)
 		{
-			stillgoing = StackWalk(IMAGE_FILE_MACHINE_I386,
+			stillgoing = StackWalk(IMAGE_FILE_MACHINE_AMD64,
 								process,
 								thread,
 								&stack_frame,
