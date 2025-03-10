@@ -5,13 +5,6 @@ target_compile_definitions(wwcommon INTERFACE
         __PLACEMENT_VEC_NEW_INLINE
         $<$<CONFIG:Debug>:WWDEBUG>
         $<$<CONFIG:Debug>:_DEBUG>
-        _DEBUG
-        WINVER=0x400
-        _WINDOWS
-        WIN32
-        WIN32_LEAN_AND_MEAN
-        REGEX_MALLOC
-        STDC_HEADERS
 )
 
 target_compile_options(wwcommon INTERFACE
@@ -57,7 +50,7 @@ target_include_directories(wwvegas INTERFACE
         WWSaveLoad
         wwshade
         Wwutil
-        . # public interface
+        .
 )
 
 target_link_libraries(wwvegas INTERFACE
