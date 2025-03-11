@@ -5551,15 +5551,19 @@ Bool PartitionFilterStealthedAndUndetected::allow( Object *objOther )
 			if( contain->getStealthUnitsContained() == contain->getContainCount() )
 			{
 				//Check if the first object inside is detected (if one is detected, all are detected).
-				ContainedItemsList::const_iterator it = contain->getContainedItemsList()->begin();
-				Object *member = (*it);
-				if( member && !(*it)->getStatusBits().test( OBJECT_STATUS_DETECTED ) )
+				auto it = contain->getContainedItemsList()->begin();
+
+				if (it != contain->getContainedItemsList()->end())
 				{
-					//Finally check the relationship!
-					if( victimApparentController && m_obj->getTeam()->getRelationship( victimApparentController->getDefaultTeam() ) == ENEMIES )
+					Object *member = (*it);
+					if( member && !(*it)->getStatusBits().test( OBJECT_STATUS_DETECTED ) )
 					{
-						//Our object is a neutral building garrisoned by enemy units we can't see, therefore it is stealthed.
-						return m_allow;
+						//Finally check the relationship!
+						if( victimApparentController && m_obj->getTeam()->getRelationship( victimApparentController->getDefaultTeam() ) == ENEMIES )
+						{
+							//Our object is a neutral building garrisoned by enemy units we can't see, therefore it is stealthed.
+							return m_allow;
+						}
 					}
 				}
 			}

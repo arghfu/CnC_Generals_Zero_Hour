@@ -607,7 +607,7 @@ GlobalData::GlobalData()
 	m_dumpAssetUsage = FALSE;
 	m_framesPerSecondLimit = 0;
 	m_chipSetType = 0;
-	m_windowed = true;
+	m_windowed = FALSE;
 	m_xResolution = 800;
 	m_yResolution = 600;
 	m_maxShellScreens = 0;
