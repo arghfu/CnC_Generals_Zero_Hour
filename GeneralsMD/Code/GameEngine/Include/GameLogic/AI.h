@@ -311,8 +311,18 @@ class Waypoint;
 class Team;
 class Weapon;
 
+// TODO refactor enum with the AI_*
+#undef AI_PASSIVE
+
 // Note - written out in save/load xfer and .map files, don't change these numbers.  
-enum AttitudeType { AI_SLEEP = -2, AI_PASSIVE=-1, AI_NORMAL=0, AI_ALERT=1, AI_AGGRESSIVE=2, AI_INVALID=3 };		///< AI "attitude" behavior modifiers
+enum AttitudeType {
+	AI_SLEEP = -2,
+	AI_PASSIVE= -1,
+	AI_NORMAL=0,
+	AI_ALERT=1,
+	AI_AGGRESSIVE=2,
+	AI_INVALID=3
+};		///< AI "attitude" behavior modifiers
 
 enum CommandSourceType;
 

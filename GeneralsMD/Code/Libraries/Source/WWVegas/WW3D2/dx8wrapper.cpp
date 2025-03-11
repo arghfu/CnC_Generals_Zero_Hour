@@ -810,7 +810,7 @@ bool DX8Wrapper::Set_Any_Render_Device(void)
 	}
 
 	// Try windowed first
-	for (dev_number = 0; dev_number < _RenderDeviceNameTable.Count(); dev_number++) {
+	for (int dev_number = 0; dev_number < _RenderDeviceNameTable.Count(); dev_number++) {
 		if (Set_Render_Device(dev_number,-1,-1,-1,1,false)) {
 			return true;
 		}
@@ -1458,7 +1458,8 @@ bool DX8Wrapper::Find_Color_And_Z_Mode(int resx,int resy,int bitdepth,D3DFORMAT 
 	bool found = false;
 	unsigned int mode = 0;
 
-	for (int format_index=0; format_index < format_count; format_index++) {
+	int format_index = 0;
+	for (format_index=0; format_index < format_count; format_index++) {
 		found |= Find_Color_Mode(format_table[format_index],resx,resy,&mode);
 		if (found) break;
 	}
@@ -2316,7 +2317,7 @@ void DX8Wrapper::Apply_Render_State_Changes()
 	}
 	if (render_state_changed&VERTEX_BUFFER_CHANGED) {
 		SNAPSHOT_SAY(("DX8 - apply vb change\n"));
-		for (i=0;i<MAX_VERTEX_STREAMS;++i) {
+		for (int i=0;i<MAX_VERTEX_STREAMS;++i) {
 			if (render_state.vertex_buffers[i]) {
 				switch (render_state.vertex_buffer_types[i]) {//->Type()) {
 				case BUFFER_TYPE_DX8:
@@ -3084,55 +3085,58 @@ void DX8Wrapper::Set_Light_Environment(LightEnvironmentClass* light_env)
 #endif
 		}
 
-		D3DLIGHT8 light;		
-		for (int l=0;l<light_count;++l) {
-			
-			::ZeroMemory(&light, sizeof(D3DLIGHT8));
-			
-			light.Type=D3DLIGHT_DIRECTIONAL;
-			(Vector3&)light.Diffuse=light_env->Get_Light_Diffuse(l);
-			Vector3 dir=-light_env->Get_Light_Direction(l);
-			light.Direction=(const D3DVECTOR&)(dir);
+		D3DLIGHT8 light;
+		{
+			int l = 0;
+			for (l=0;l<light_count;++l) {
 
-			// (gth) TODO: put specular into LightEnvironment?  Much work to be done on lights :-)'
-			if (l==0) {
-				light.Specular.r = light.Specular.g = light.Specular.b = 1.0f;
-			}
+				::ZeroMemory(&light, sizeof(D3DLIGHT8));
 
-			if (light_env->isPointLight(l)) {
-				light.Type = D3DLIGHT_POINT;
-				(Vector3&)light.Diffuse=light_env->getPointDiffuse(l);
-				(Vector3&)light.Ambient=light_env->getPointAmbient(l);
-				light.Position = (const D3DVECTOR&)light_env->getPointCenter(l);
-				light.Range = light_env->getPointOrad(l);
-				
-				// Inverse linear light 1/(1+D)
-				double a,b;
-				b = light_env->getPointOrad(l);
-				a = light_env->getPointIrad(l);
+				light.Type=D3DLIGHT_DIRECTIONAL;
+				(Vector3&)light.Diffuse=light_env->Get_Light_Diffuse(l);
+				Vector3 dir=-light_env->Get_Light_Direction(l);
+				light.Direction=(const D3DVECTOR&)(dir);
 
-//(gth) CNC3 Generals code for the attenuation factors is causing the lights to over-brighten
-//I'm changing the Attenuation0 parameter to 1.0 to avoid this problem.				
+				// (gth) TODO: put specular into LightEnvironment?  Much work to be done on lights :-)'
+				if (l==0) {
+					light.Specular.r = light.Specular.g = light.Specular.b = 1.0f;
+				}
+
+				if (light_env->isPointLight(l)) {
+					light.Type = D3DLIGHT_POINT;
+					(Vector3&)light.Diffuse=light_env->getPointDiffuse(l);
+					(Vector3&)light.Ambient=light_env->getPointAmbient(l);
+					light.Position = (const D3DVECTOR&)light_env->getPointCenter(l);
+					light.Range = light_env->getPointOrad(l);
+
+					// Inverse linear light 1/(1+D)
+					double a,b;
+					b = light_env->getPointOrad(l);
+					a = light_env->getPointIrad(l);
+
+					//(gth) CNC3 Generals code for the attenuation factors is causing the lights to over-brighten
+					//I'm changing the Attenuation0 parameter to 1.0 to avoid this problem.
 #if 0
-				light.Attenuation0=0.01f;
+					light.Attenuation0=0.01f;
 #else
-				light.Attenuation0=1.0f;
+					light.Attenuation0=1.0f;
 #endif
-				if (fabs(a-b)<1e-5)
-					// if the attenuation range is too small assume uniform with cutoff
-					light.Attenuation1=0.0f;
-				else
-					// this will cause the light to drop to half intensity at the first far attenuation
-					light.Attenuation1=(float) 0.1/a;
-	
-				light.Attenuation2=8.0f/(b*b);
+					if (fabs(a-b)<1e-5)
+						// if the attenuation range is too small assume uniform with cutoff
+							light.Attenuation1=0.0f;
+					else
+						// this will cause the light to drop to half intensity at the first far attenuation
+							light.Attenuation1=(float) 0.1/a;
+
+					light.Attenuation2=8.0f/(b*b);
+				}
+
+				Set_Light(l,&light);
 			}
 
-			Set_Light(l,&light);
-		}
-
-		for (;l<4;++l) {
-			Set_Light(l,NULL);
+			for (;l<4;++l) {
+				Set_Light(l,NULL);
+			}
 		}
 	}
 /*	else {

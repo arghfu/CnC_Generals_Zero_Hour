@@ -317,7 +317,7 @@ static float s_totalWinPercent = 0;
 
 static const char* FindNextNumber( const char* pStart )
 {
-	char* pNum = strchr( pStart, '\n' );  //go to next line
+	char const* pNum = strchr(pStart, '\n');  //go to next line
 	if( !pNum )
 		return pStart;  //error
 
@@ -728,7 +728,7 @@ WindowMsgHandledType WOLWelcomeMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( BitTest_( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonBack, buttonBackID );

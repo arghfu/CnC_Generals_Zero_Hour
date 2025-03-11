@@ -22,7 +22,7 @@
 // $Revision: #2 $
 // $DateTime: 2003/08/14 13:43:29 $
 //
-// ©2003 Electronic Arts
+// ï¿½2003 Electronic Arts
 //
 // High level profiling
 //////////////////////////////////////////////////////////////////////////////
@@ -216,8 +216,8 @@ const char *ProfileId::AsString(double v) const
 int ProfileId::FrameStart(void)
 {
   ProfileFastCS::Lock lock(cs);
-
-  for (unsigned i=0;i<MAX_FRAME_RECORDS;i++)
+  unsigned i;
+  for (i=0;i<MAX_FRAME_RECORDS;i++)
     if (!(frameRecordMask&(1<<i)))
       break;
   if (i==MAX_FRAME_RECORDS)
@@ -311,7 +311,8 @@ ProfileHighLevel::Id ProfileHighLevel::AddProfile(const char *name, const char *
 bool ProfileHighLevel::EnumProfile(unsigned index, Id &id)
 {
   ProfileFastCS::Lock lock(cs);
-  for (ProfileId *cur=ProfileId::GetFirst();cur&&index--;cur=cur->GetNext());
+  ProfileId *cur;
+  for (cur=ProfileId::GetFirst();cur&&index--;cur=cur->GetNext());
   id.m_idPtr=cur;
   return cur!=NULL;
 }

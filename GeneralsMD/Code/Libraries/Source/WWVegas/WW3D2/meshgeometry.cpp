@@ -2110,16 +2110,19 @@ void MeshGeometryClass::get_deformed_screenspace_vertices(Vector4 *dst_vert,cons
 			Matrix4x4 tm = prj * htree->Get_Transform(idx);
 
 			// Count equal matrices (the vertices should be pre-sorted by matrices they use)
-			for (int cnt = vi; cnt < vertex_count; cnt++) if (idx!=bonelink[cnt]) break;
+			{
+				int cnt;
+				for (cnt = vi; cnt < vertex_count; cnt++) if (idx!=bonelink[cnt]) break;
 
-			// Transform to screenspace (x,y,z,w)
-			VectorProcessorClass::Transform(
-				dst_vert+vi,
-				src_vert+vi,
-				tm,
-				cnt-vi);
+				// Transform to screenspace (x,y,z,w)
+				VectorProcessorClass::Transform(
+					dst_vert+vi,
+					src_vert+vi,
+					tm,
+					cnt-vi);
 
-			vi=cnt;
+				vi=cnt;
+			}
 		}
 	} else {
 		VectorProcessorClass::Transform(

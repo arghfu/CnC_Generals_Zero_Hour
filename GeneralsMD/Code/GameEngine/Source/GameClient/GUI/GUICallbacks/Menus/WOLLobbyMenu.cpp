@@ -142,7 +142,7 @@ std::list<PeerResponse> TheLobbyQueuedUTMs;
 
 // Slash commands -------------------------------------------------------------------------
 extern "C" {
-int getQR2HostingStatus(void);
+	int getQR2HostingStatus(void);
 }
 extern int isThreadHosting;
 
@@ -509,7 +509,8 @@ void PopulateLobbyPlayerListbox(void)
 		std::set<Int> indicesToSelect;
 		UnicodeString uStr;
 		Int numSelected = 0;
-		for (Int i=0; i<maxSelectedItems; ++i)
+		Int i;
+		for (i=0; i<maxSelectedItems; ++i)
 		{
 			if (selectedIndices[i] < 0)
 			{
@@ -656,7 +657,7 @@ void WOLLobbyMenuInit( WindowLayout *layout, void *userData )
 	comboLobbyGroupRoomsID = TheNameKeyGenerator->nameToKey(AsciiString("WOLCustomLobby.wnd:ComboBoxGroupRooms"));
 	comboLobbyGroupRooms = TheWindowManager->winGetWindowFromId(parent, comboLobbyGroupRoomsID);
 
-	GadgetTextEntrySetText(textEntryChat, UnicodeString.TheEmptyString);
+	GadgetTextEntrySetText(textEntryChat, UnicodeString::TheEmptyString);
 
 	populateGroupRoomListbox(comboLobbyGroupRooms);
 
@@ -1355,7 +1356,7 @@ WindowMsgHandledType WOLLobbyMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( BitTest_( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonBack, buttonBackID );

@@ -1201,7 +1201,7 @@ PathfindCell::~PathfindCell( void )
 { 	
 	if (m_info) PathfindCellInfo::releaseACellInfo(m_info);
 	m_info = NULL;
-	static warn = true;
+	static bool warn = true;
 	if (warn) {
 		warn = false;
 		DEBUG_LOG( ("PathfindCell::~PathfindCell m_info Allocated."));
@@ -4028,7 +4028,7 @@ void Pathfinder::classifyFence( Object *obj, Bool insert )
  	Real tl_x = pos->x - fenceOffset*c - halfsizeY*s;
  	Real tl_y = pos->y + halfsizeY*c - fenceOffset*s;
 
-	IRegion2D cellBounds;
+	IRegion2D cellBounds {};
 	cellBounds.lo.x = REAL_TO_INT_FLOOR((pos->x + 0.5f)/PATHFIND_CELL_SIZE_F);
 	cellBounds.lo.y = REAL_TO_INT_FLOOR((pos->y + 0.5f)/PATHFIND_CELL_SIZE_F);
 	Bool didAnything = false;
@@ -6820,7 +6820,7 @@ Path *Pathfinder::buildGroundPath(Bool isCrusher, const Coord3D *fromPos, Pathfi
 		}
 
 		// show optimized path
-		for( node = path->getFirstNode(); node; node = node->getNextOptimized() )
+		for( PathNode *node = path->getFirstNode(); node; node = node->getNextOptimized() )
 		{
 			pos = *node->getPosition();
 			addIcon(&pos, PATHFIND_CELL_SIZE_F*.8f, 200, color);
@@ -9013,7 +9013,7 @@ Path *Pathfinder::buildActualPath( const Object *obj, LocomotorSurfaceTypeMask a
 		}
 
 		// show optimized path
-		for( node = path->getFirstNode(); node; node = node->getNextOptimized() )
+		for( PathNode *node = path->getFirstNode(); node; node = node->getNextOptimized() )
 		{
 			pos = *node->getPosition();
 			addIcon(&pos, PATHFIND_CELL_SIZE_F*.8f, 200, color);

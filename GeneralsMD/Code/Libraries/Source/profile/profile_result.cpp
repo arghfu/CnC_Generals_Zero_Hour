@@ -22,7 +22,7 @@
 // $Revision: #2 $
 // $DateTime: 2003/08/12 15:05:00 $
 //
-// ©2003 Electronic Arts
+// ï¿½2003 Electronic Arts
 //
 // Result function interface and result functions
 //////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ void ProfileResultFileCSV::WriteThread(ProfileFuncLevel::Thread &thread)
 
   // now show all profile IDs (functions)
   ProfileFuncLevel::Id id;
-  for (k=0;thread.EnumProfile(k,id);k++)
+  for (unsigned k=0;thread.EnumProfile(k,id);k++)
   {
     fprintf(f,"%s[%08x]\t%s, %i",id.GetFunction(),id.GetAddress(),
                                    id.GetSource(),id.GetLine());
@@ -103,7 +103,8 @@ void ProfileResultFileCSV::WriteThread(ProfileFuncLevel::Thread &thread)
 void ProfileResultFileCSV::WriteResults(void)
 {
   ProfileFuncLevel::Thread t;
-  for (unsigned k=0;ProfileFuncLevel::EnumThreads(k,t);k++)
+  unsigned int k;
+  for (k=0;ProfileFuncLevel::EnumThreads(k,t);k++)
     WriteThread(t);
 
   FILE *f=fopen("profile-high.csv","wt");
@@ -202,7 +203,7 @@ void ProfileResultFileDOT::WriteResults(void)
   // determine number of active functions
   unsigned active=0;
   ProfileFuncLevel::Id id;
-  for (k=0;tMax.EnumProfile(k,id);k++)
+  for (uint32_t k=0;tMax.EnumProfile(k,id);k++)
     if (id.GetCalls(frame))
       active++;
 
@@ -223,10 +224,11 @@ void ProfileResultFileDOT::WriteResults(void)
 
     // build source code clusters first
     FoldHelper *fold=NULL;
-    for (k=0;tMax.EnumProfile(k,id);k++)
+    for (uint32_t k=0;tMax.EnumProfile(k,id);k++)
     {
       const char *source=id.GetSource();
-      for (FoldHelper *cur=fold;cur;cur=cur->next)
+      FoldHelper *cur;
+      for (cur=fold;cur;cur=cur->next)
         if (!strcmp(source,cur->source))
         {
           if (cur->numId<MAX_FUNCTIONS_PER_FILE)
@@ -247,17 +249,18 @@ void ProfileResultFileDOT::WriteResults(void)
     // now write data
     for (FoldHelper *cur=fold;cur;cur=cur->next)
     {
-      for (FoldHelper *cur2=fold;cur2;cur2=cur2->next)
+      FoldHelper *cur2;
+      for (cur2=fold;cur2;cur2=cur2->next)
         cur2->mark=false;
       
-      for (k=0;k<cur->numId;k++)
+      for (uint32_t k=0;k<cur->numId;k++)
       {
         ProfileFuncLevel::IdList idlist=id.GetCaller(frame);
         ProfileFuncLevel::Id caller;
         for (unsigned i=0;idlist.Enum(i,caller);i++)
         {
           const char *s=caller.GetSource();
-          for (FoldHelper *cur2=fold;cur2;cur2=cur2->next)
+          for (cur2=fold;cur2;cur2=cur2->next)
             if (!strcmp(cur2->source,s))
               break;
           if (!cur2||cur2->mark)
@@ -280,10 +283,10 @@ void ProfileResultFileDOT::WriteResults(void)
   else
   {
     // non-folding version
-    for (k=0;tMax.EnumProfile(k,id);k++)
+    for (uint32_t k=0;tMax.EnumProfile(k,id);k++)
       if (id.GetCalls(frame))
         fprintf(f,"f%08x [label=\"%s\"]\n",id.GetAddress(),id.GetFunction());
-    for (k=0;tMax.EnumProfile(k,id);k++)
+    for (uint32_t k=0;tMax.EnumProfile(k,id);k++)
     {
       ProfileFuncLevel::IdList idlist=id.GetCaller(frame);
       ProfileFuncLevel::Id caller;

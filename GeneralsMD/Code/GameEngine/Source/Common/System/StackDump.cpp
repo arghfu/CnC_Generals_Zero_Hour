@@ -380,7 +380,7 @@ stack_frame.AddrFrame.Offset = myebp;
 		// Skip some?
 		while (stillgoing&&skip)
 		{
-			stillgoing = StackWalk(IMAGE_FILE_MACHINE_I386,
+			stillgoing = StackWalk(IMAGE_FILE_MACHINE_AMD64,
 								process,
 								thread,
 								&stack_frame,
@@ -394,7 +394,7 @@ stack_frame.AddrFrame.Offset = myebp;
 
 		while(stillgoing&&count)
 		{
-			stillgoing = StackWalk(IMAGE_FILE_MACHINE_I386,
+			stillgoing = StackWalk(IMAGE_FILE_MACHINE_AMD64,
 								process,
 								thread,
 								&stack_frame,
@@ -560,7 +560,8 @@ void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info )
 	/*
 	** Match the exception type with the error string and print it out
 	*/
-	for ( int i=0 ; _codes[i] != 0xffffffff ; i++ )
+	int i;
+	for (i=0 ; _codes[i] != 0xffffffff ; i++ )
 	{
 		if ( _codes[i] == e_info->ExceptionRecord->ExceptionCode )
 		{
